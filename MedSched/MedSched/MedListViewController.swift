@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MedSchedViewController: UITableViewController {
+class MedListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37395BAE2C25D5B3002A3895 /* MedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37395BAD2C25D5B3002A3895 /* MedListViewController.swift */; };
 		377699162C09F95500F7C43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377699152C09F95500F7C43C /* AppDelegate.swift */; };
 		377699182C09F95500F7C43C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377699172C09F95500F7C43C /* SceneDelegate.swift */; };
-		3776991A2C09F95500F7C43C /* MedSchedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377699192C09F95500F7C43C /* MedSchedViewController.swift */; };
 		3776991D2C09F95500F7C43C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 3776991C2C09F95500F7C43C /* Base */; };
 		3776991F2C09F95700F7C43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3776991E2C09F95700F7C43C /* Assets.xcassets */; };
 		377699222C09F95700F7C43C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 377699212C09F95700F7C43C /* Base */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37395BAD2C25D5B3002A3895 /* MedListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedListViewController.swift; sourceTree = "<group>"; };
 		377699122C09F95500F7C43C /* MedSched.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedSched.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377699152C09F95500F7C43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		377699172C09F95500F7C43C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		377699192C09F95500F7C43C /* MedSchedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSchedViewController.swift; sourceTree = "<group>"; };
 		3776991C2C09F95500F7C43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3776991E2C09F95700F7C43C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		377699212C09F95700F7C43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,9 +56,9 @@
 		377699142C09F95500F7C43C /* MedSched */ = {
 			isa = PBXGroup;
 			children = (
+				37395BAD2C25D5B3002A3895 /* MedListViewController.swift */,
 				377699152C09F95500F7C43C /* AppDelegate.swift */,
 				377699172C09F95500F7C43C /* SceneDelegate.swift */,
-				377699192C09F95500F7C43C /* MedSchedViewController.swift */,
 				3776991B2C09F95500F7C43C /* Main.storyboard */,
 				3776991E2C09F95700F7C43C /* Assets.xcassets */,
 				377699202C09F95700F7C43C /* LaunchScreen.storyboard */,
@@ -138,9 +138,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3776991A2C09F95500F7C43C /* MedSchedViewController.swift in Sources */,
 				377699162C09F95500F7C43C /* AppDelegate.swift in Sources */,
 				377699182C09F95500F7C43C /* SceneDelegate.swift in Sources */,
+				37395BAE2C25D5B3002A3895 /* MedListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
