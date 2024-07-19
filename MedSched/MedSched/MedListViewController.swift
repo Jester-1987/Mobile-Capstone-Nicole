@@ -8,58 +8,93 @@
 import UIKit
 
 class MedListViewController: UITableViewController {
-
+    var items = [ChecklistItem]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // Replace previous code with the following
+        let item1 = ChecklistItem()
+        item1.text = "Med 1 I l"
+        items.append(item1)
+        
+        let item2 = ChecklistItem()
+        item2.text = "Med 2"
+        item2.checked = true
+        items.append(item2)
+        
+        let item3 = ChecklistItem()
+        item3.text = "Med 3"
+        item3.checked = true
+        items.append(item3)
+        
+        let item4 = ChecklistItem()
+        item4.text = "Med 4"
+        items.append(item4)
+        
+        let item5 = ChecklistItem()
+        item5.text = "Med 5"
+        items.append(item5)
     }
-// MARK: - Table View Data Source
+    
+    
+    // MARK: - Table View Data Source
     override func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return 5
+        return items.count
     }
     
     override func tableView(
-        _ tableView: UITableView,
+        _ tableView:  UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "ChecklistItem", for: indexPath)
+            withIdentifier: "ChecklistItem",
+            for: indexPath)
         
-        let label = cell.viewWithTag(1000) as! UILabel
+        let item = items[indexPath.row]
         
-        if indexPath.row == 0 {
-            label.text = "Medication 1"
-        } else if indexPath.row == 1 {
-            label.text = "Medication 2"
-        } else if indexPath.row == 2 {
-            label.text = "Medication 3"
-        } else if indexPath.row == 3 {
-            label.text = "Medication 4"
-        } else if indexPath.row == 4 {
-            label.text = "Medication 5"
-        }
-        
+        configureText(for: cell, with: item)
+        configureCheckmark(for: cell, with: item)
         return cell
     }
-
+    
+    // MARK: - Configure Checkmarks and text
+    
+    func configureCheckmark(
+        for cell: UITableViewCell,
+        with item: ChecklistItem
+    ) {
+        if item.checked {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+    }
+    
+    
+    func configureText(
+        for cell: UITableViewCell,
+        with item: ChecklistItem
+    ) {
+        let label = cell.viewWithTag(1000) as! UILabel
+        label.text = item.text
+    }
+    
+    
     // MARK: - Table View Delegate
+    
     override func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        // toggling checkmark on/off
         if let cell = tableView.cellForRow(at: indexPath) {
-            if cell.accessoryType == .none {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
+            let item = items[indexPath.row]
+            item.checked.toggle()
+            configureCheckmark(for: cell, with: item)
         }
-        // selects/deselects rows
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
