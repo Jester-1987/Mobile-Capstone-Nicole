@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MedListViewController: UITableViewController {
+class MedListViewController: UITableViewController, AddItemViewControllerDelegate {
+    
+    
     var items = [ChecklistItem]()
     
     override func viewDidLoad() {
@@ -36,6 +38,19 @@ class MedListViewController: UITableViewController {
         let item5 = ChecklistItem()
         item5.text = "Med 5"
         items.append(item5)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(
+      for segue: UIStoryboardSegue,
+      sender: Any?
+    ) {
+      if segue.identifier == "AddItem" {
+        let controller = segue.destination as! AddItemViewController
+        controller.delegate = self
+          // TODO: - ASK ABOUT THIS ERROR
+          
+      }
     }
     
     // MARK: - Actions
@@ -107,7 +122,7 @@ class MedListViewController: UITableViewController {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+       
     // swipe to delete
     override func tableView(
         _ tableView: UITableView,
@@ -117,6 +132,16 @@ class MedListViewController: UITableViewController {
         items.remove(at: indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
-    }    
+    }
+    
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+
 }
 

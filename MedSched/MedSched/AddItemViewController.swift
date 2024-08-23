@@ -4,10 +4,17 @@ protocol AddItemViewControllerDelegate: AnyObject {
     func addItemViewControllerDidCancel(
         _ controller: AddItemViewController)
     func addItemViewController(
-        _ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+        _ controller: AddItemViewController, 
+        didFinishAdding item: ChecklistItem
+    )
 }
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
+    // MARK: - Outlets
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
+    weak var delegete: AddItemViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,14 +25,6 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         textField.becomeFirstResponder()
     }
-
-// MARK: - Outlets
-    
-    @IBOutlet weak var textField: UITextField!
-    
-    @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    
-    weak var delegete: AddItemViewControllerDelegate?
     
 // MARK: - Actions
     
@@ -71,5 +70,4 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         doneBarButton.isEnabled = false
         return true
     }
-
 }

@@ -48,7 +48,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oAE-zl-s5N">
                             <connections>
                                 <action selector="addItem" destination="aOB-i4-XSj" id="CTx-UW-3VQ"/>
-                                <segue destination="SLs-e0-Ncp" kind="show" id="379-ms-sfH"/>
+                                <segue destination="SLs-e0-Ncp" kind="show" identifier="AddItem" id="379-ms-sfH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
