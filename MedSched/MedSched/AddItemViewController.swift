@@ -1,5 +1,12 @@
 import UIKit
 
+protocol AddItemViewControllerDelegate: AnyObject {
+    func addItemViewControllerDidCancel(
+        _ controller: AddItemViewController)
+    func addItemViewController(
+        _ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+}
+
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
@@ -17,16 +24,20 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
+    weak var delegete: AddItemViewControllerDelegate?
+    
 // MARK: - Actions
     
     @IBAction func cancel() {
-        navigationController?.popViewController(animated: true)
+        delegete?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func done() {
-        // printing to console for testing
-        print("Contents of the text field: \(textField.text!)")
-        navigationController?.popViewController(animated:true)
+        let item = ChecklistItem()
+        item.text = textField.text!
+        
+        delegete?.addItemViewController(self, didFinishAdding: item)
     }
     
 // MARK: - Table View Delegates
