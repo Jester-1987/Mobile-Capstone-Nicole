@@ -48,8 +48,7 @@ class MedListViewController: UITableViewController, AddItemViewControllerDelegat
       if segue.identifier == "AddItem" {
         let controller = segue.destination as! AddItemViewController
         controller.delegate = self
-          // TODO: - ASK ABOUT THIS ERROR
-          
+                  
       }
     }
     

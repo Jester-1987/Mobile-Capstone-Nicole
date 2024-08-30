@@ -14,7 +14,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
-    weak var delegete: AddItemViewControllerDelegate?
+    weak var delegate: AddItemViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +29,14 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
 // MARK: - Actions
     
     @IBAction func cancel() {
-        delegete?.addItemViewControllerDidCancel(self)
+        delegate?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func done() {
         let item = ChecklistItem()
         item.text = textField.text!
         
-        delegete?.addItemViewController(self, didFinishAdding: item)
+        delegate?.addItemViewController(self, didFinishAdding: item)
     }
     
 // MARK: - Table View Delegates
