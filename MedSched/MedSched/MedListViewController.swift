@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MedListViewController: UITableViewController, AddItemViewControllerDelegate {
+class MedListViewController: UITableViewController, itemDetailViewControllerDelegate {
     
     
     var items = [ChecklistItem]()
@@ -42,40 +42,37 @@ class MedListViewController: UITableViewController, AddItemViewControllerDelegat
     
     // MARK: - Navigation
     override func prepare(
-      for segue: UIStoryboardSegue,
-      sender: Any?
+        for segue: UIStoryboardSegue,
+        sender: Any?
     ) {
-      if segue.identifier == "AddItem" {
-        let controller = segue.destination as! AddItemViewController
-        controller.delegate = self
-                  
-      }
+        if segue.identifier == "AddItem" {
+            let controller = segue.destination as! ItemDetailViewController
+            controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+            let controller = segue.destination as! ItemDetailViewController
+            controller.delegate = self
+            
+            if let indexPath = tableView.indexPath (for: sender as! UITableViewCell) {
+                controller.itemToEdit = items[indexPath.row]
+            }
+        }
+        
     }
     
-    // MARK: - Actions
-    @IBAction func addItem() {
-        let newRowIndex = items.count
-        
-        let item = ChecklistItem()
-        item.text = "I am a new row"
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
-    }
     
     // MARK: - Configure Checkmarks and text
     
     func configureCheckmark(
-      for cell: UITableViewCell,
-      with item: ChecklistItem
+        for cell: UITableViewCell,
+        with item: ChecklistItem
     ) {
-      if item.checked {
-        cell.accessoryType = .checkmark
-      } else {
-        cell.accessoryType = .none
-      }
+        let label = cell.viewWithTag(1001) as! UILabel
+        
+        if item.checked {
+            label.text = "✅" // TODO: - Change to better symbol down the road
+        } else {
+            label.text = ""
+        }
     }
     
     func configureText(
@@ -95,20 +92,20 @@ class MedListViewController: UITableViewController, AddItemViewControllerDelegat
     }
     
     override func tableView(
-      _ tableView: UITableView,
-      cellForRowAt indexPath: IndexPath
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(
-        withIdentifier: "ChecklistItem",
-        for: indexPath)
-
-      let item = items[indexPath.row]
-
-      configureText(for: cell, with: item)
-      configureCheckmark(for: cell, with: item)
-      return cell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "ChecklistItem",
+            for: indexPath)
+        
+        let item = items[indexPath.row]
+        
+        configureText(for: cell, with: item)
+        configureCheckmark(for: cell, with: item)
+        return cell
     }
-
+    
     // MARK: - Table View Delegate
     override func tableView(
         _ tableView: UITableView,
@@ -121,7 +118,7 @@ class MedListViewController: UITableViewController, AddItemViewControllerDelegat
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
-       
+    
     // swipe to delete
     override func tableView(
         _ tableView: UITableView,
@@ -133,14 +130,33 @@ class MedListViewController: UITableViewController, AddItemViewControllerDelegat
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem) {
+        let newRowIndex = items.count
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
     }
     
-
+    func itemDetailViewController(
+        _ controller: ItemDetailViewController,
+        didFinishEditing item: ChecklistItem
+    ) {
+        if let index = items.firstIndex(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath){
+                configureText(for: cell, with: item)
+            }
+        }
+        navigationController?.popViewController(animated:true)
+        
+        
+    }
 }
 
