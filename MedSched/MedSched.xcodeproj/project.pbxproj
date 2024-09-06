@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		3716EEA02C53DA5A00D9D39C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716EE9F2C53DA5A00D9D39C /* ItemDetailViewController.swift */; };
+		3757304D2C8B38A2006FB0F1 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757304C2C8B38A1006FB0F1 /* AllListsViewController.swift */; };
 		377699162C09F95500F7C43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377699152C09F95500F7C43C /* AppDelegate.swift */; };
 		377699182C09F95500F7C43C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377699172C09F95500F7C43C /* SceneDelegate.swift */; };
 		3776991D2C09F95500F7C43C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 3776991C2C09F95500F7C43C /* Base */; };
 		3776991F2C09F95700F7C43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3776991E2C09F95700F7C43C /* Assets.xcassets */; };
 		377699222C09F95700F7C43C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 377699212C09F95700F7C43C /* Base */; };
 		377BF5E02C4A96FD00B5463F /* MedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377BF5DF2C4A96FD00B5463F /* MedListViewController.swift */; };
+		37F0B6382C8B4B3E00613B00 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F0B6372C8B4B3E00613B00 /* Checklist.swift */; };
+		37F0B63A2C8B51C000613B00 /* ListDetailViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F0B6392C8B51C000613B00 /* ListDetailViewConroller.swift */; };
 		37F408762C4AB9DC00308A14 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F408752C4AB9DC00308A14 /* ChecklistItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3716EE9F2C53DA5A00D9D39C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		3757304C2C8B38A1006FB0F1 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		377699122C09F95500F7C43C /* MedSched.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedSched.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377699152C09F95500F7C43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		377699172C09F95500F7C43C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +31,8 @@
 		377699212C09F95700F7C43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		377699232C09F95700F7C43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		377BF5DF2C4A96FD00B5463F /* MedListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedListViewController.swift; sourceTree = "<group>"; };
+		37F0B6372C8B4B3E00613B00 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		37F0B6392C8B51C000613B00 /* ListDetailViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewConroller.swift; sourceTree = "<group>"; };
 		37F408752C4AB9DC00308A14 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +75,9 @@
 				377699232C09F95700F7C43C /* Info.plist */,
 				37F408752C4AB9DC00308A14 /* ChecklistItem.swift */,
 				3716EE9F2C53DA5A00D9D39C /* ItemDetailViewController.swift */,
+				3757304C2C8B38A1006FB0F1 /* AllListsViewController.swift */,
+				37F0B6372C8B4B3E00613B00 /* Checklist.swift */,
+				37F0B6392C8B51C000613B00 /* ListDetailViewConroller.swift */,
 			);
 			path = MedSched;
 			sourceTree = "<group>";
@@ -146,9 +155,12 @@
 			files = (
 				3716EEA02C53DA5A00D9D39C /* ItemDetailViewController.swift in Sources */,
 				377699162C09F95500F7C43C /* AppDelegate.swift in Sources */,
+				37F0B63A2C8B51C000613B00 /* ListDetailViewConroller.swift in Sources */,
+				3757304D2C8B38A2006FB0F1 /* AllListsViewController.swift in Sources */,
 				377699182C09F95500F7C43C /* SceneDelegate.swift in Sources */,
 				377BF5E02C4A96FD00B5463F /* MedListViewController.swift in Sources */,
 				37F408762C4AB9DC00308A14 /* ChecklistItem.swift in Sources */,
+				37F0B6382C8B4B3E00613B00 /* Checklist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

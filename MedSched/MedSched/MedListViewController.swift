@@ -11,33 +11,51 @@ class MedListViewController: UITableViewController, itemDetailViewControllerDele
     
     
     var items = [ChecklistItem]()
+    var checklist: Checklist!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .never
         
-        
-        let item1 = ChecklistItem()
-        item1.text = "Med 1"
-        items.append(item1)
-        
-        let item2 = ChecklistItem()
-        item2.text = "Med 2"
-        item2.checked = true
-        items.append(item2)
-        
-        let item3 = ChecklistItem()
-        item3.text = "Med 3"
-        item3.checked = true
-        items.append(item3)
-        
-        let item4 = ChecklistItem()
-        item4.text = "Med 4"
-        items.append(item4)
-        
-        let item5 = ChecklistItem()
-        item5.text = "Med 5"
-        items.append(item5)
+   loadChecklistItems()
+        title = checklist.name
+    }
+    
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("MedSched.plist")
+    }
+    
+    func saveChecklistItems() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(items)
+            try data.write(
+                to: dataFilePath(),
+                options: Data.WritingOptions.atomic)
+        } catch {
+        print("Error encoding item array: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadChecklistItems() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                items = try decoder.decode(
+                    [ChecklistItem].self,
+                    from: data)
+            } catch {
+                print("Error decoding item array: \(error.localizedDescription)")
+            }
+        }
     }
     
     // MARK: - Navigation
@@ -117,6 +135,7 @@ class MedListViewController: UITableViewController, itemDetailViewControllerDele
             configureCheckmark(for: cell, with: item)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+        saveChecklistItems()
     }
     
     // swipe to delete
@@ -128,6 +147,7 @@ class MedListViewController: UITableViewController, itemDetailViewControllerDele
         items.remove(at: indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveChecklistItems()
     }
     
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
@@ -142,6 +162,7 @@ class MedListViewController: UITableViewController, itemDetailViewControllerDele
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
+        saveChecklistItems()
     }
     
     func itemDetailViewController(
@@ -155,8 +176,7 @@ class MedListViewController: UITableViewController, itemDetailViewControllerDele
             }
         }
         navigationController?.popViewController(animated:true)
-        
-        
+        saveChecklistItems()
     }
 }
 
