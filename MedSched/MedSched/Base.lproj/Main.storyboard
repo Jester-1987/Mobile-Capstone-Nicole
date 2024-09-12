@@ -175,7 +175,7 @@
         <!--Add Medication List-->
         <scene sceneID="XGN-A2-PiI">
             <objects>
-                <tableViewController id="pk3-Qr-tHh" customClass="ListDetailViewController" customModule="MedSched" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="pk3-Qr-tHh" customClass="ListDetailViewController" customModule="MedSched" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="8Nm-PX-Xt4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
