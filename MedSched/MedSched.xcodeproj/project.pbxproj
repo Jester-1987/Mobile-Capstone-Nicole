@@ -68,19 +68,19 @@
 		377699142C09F95500F7C43C /* MedSched */ = {
 			isa = PBXGroup;
 			children = (
-				377BF5DF2C4A96FD00B5463F /* MedListViewController.swift */,
+				377699232C09F95700F7C43C /* Info.plist */,
+				3757304C2C8B38A1006FB0F1 /* AllListsViewController.swift */,
 				377699152C09F95500F7C43C /* AppDelegate.swift */,
+				37F0B6372C8B4B3E00613B00 /* Checklist.swift */,
+				37F408752C4AB9DC00308A14 /* ChecklistItem.swift */,
+				378A973E2C93249E00104699 /* DataModel.swift */,
+				3716EE9F2C53DA5A00D9D39C /* ItemDetailViewController.swift */,
+				37F0B6392C8B51C000613B00 /* ListDetailViewConroller.swift */,
+				377BF5DF2C4A96FD00B5463F /* MedListViewController.swift */,
 				377699172C09F95500F7C43C /* SceneDelegate.swift */,
-				3776991B2C09F95500F7C43C /* Main.storyboard */,
 				3776991E2C09F95700F7C43C /* Assets.xcassets */,
 				377699202C09F95700F7C43C /* LaunchScreen.storyboard */,
-				377699232C09F95700F7C43C /* Info.plist */,
-				37F408752C4AB9DC00308A14 /* ChecklistItem.swift */,
-				3716EE9F2C53DA5A00D9D39C /* ItemDetailViewController.swift */,
-				3757304C2C8B38A1006FB0F1 /* AllListsViewController.swift */,
-				37F0B6372C8B4B3E00613B00 /* Checklist.swift */,
-				37F0B6392C8B51C000613B00 /* ListDetailViewConroller.swift */,
-				378A973E2C93249E00104699 /* DataModel.swift */,
+				3776991B2C09F95500F7C43C /* Main.storyboard */,
 			);
 			path = MedSched;
 			sourceTree = "<group>";

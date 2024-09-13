@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
+
     func sceneDidDisconnect(_ scene: UIScene) {
         saveData()
         // Called as the scene is being released by the system.

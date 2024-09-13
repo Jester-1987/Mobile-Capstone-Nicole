@@ -8,7 +8,7 @@
 import UIKit
 
 class AllListsViewController: UITableViewController,
-ListDetailViewControllerDelegate {
+ListDetailViewControllerDelegate, UINavigationControllerDelegate {
     
     let cellIdentifier = "ChecklistCell"
     var dataModel: DataModel!
@@ -16,14 +16,10 @@ ListDetailViewControllerDelegate {
     override func viewDidLoad() {
       super.viewDidLoad()
       navigationController?.navigationBar.prefersLargeTitles = true
-      tableView.register(
-        UITableViewCell.self,
-        forCellReuseIdentifier: cellIdentifier)
       }
 
     
     // MARK: - Table view data source
-    
     
     override func tableView(
         _ tableView: UITableView,
@@ -36,20 +32,45 @@ ListDetailViewControllerDelegate {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: cellIdentifier,
-            for: indexPath)
+        let cell: UITableViewCell!
+        if let tmp = tableView.dequeueReusableCell(
+          withIdentifier: cellIdentifier) {
+          cell = tmp
+        } else {
+          cell = UITableViewCell(
+            style: .subtitle,
+            reuseIdentifier: cellIdentifier)
+        }
         
         let checklist = dataModel.lists[indexPath.row]
         cell.textLabel!.text = checklist.name
+        cell.textLabel?.font = UIFont(name: "Verdana", size: 20)
+        cell.textLabel?.textColor = .systemIndigo
         cell.accessoryType = .detailDisclosureButton
-        return cell       
+        
+        cell.detailTextLabel!.text = "\(checklist.countUnchekedItems()) Remaining!"
+        let count = checklist.countUnchekedItems()
+        if checklist.items.count == 0 {
+          cell.detailTextLabel!.text = "(No Items)"
+        } else {
+          cell.detailTextLabel!.text = count == 0 ? "All Meds Taken!" : "\(count) Remaining"
+        }
+        cell.detailTextLabel?.font = UIFont(name: "Verdana", size: 20)
+        cell.detailTextLabel?.textColor = .systemIndigo
+        
+        return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
+        dataModel.indexOfSelectedChecklist = indexPath.row
         let checklist = dataModel.lists[indexPath.row]
         performSegue(
             withIdentifier: "ShowChecklist",
@@ -71,6 +92,7 @@ ListDetailViewControllerDelegate {
     }
     
     // MARK: - List Detail View Controller Delegates
+    
     func listDetailViewControllerDidCancel(
       _ controller: ListDetailViewController
     ) {
@@ -132,9 +154,30 @@ ListDetailViewControllerDelegate {
         animated: true)
     }
     
+    // MARK: - Navigation Conroller Delegates
     
-
-
-
+    func navigationController(
+        _ navigationController: UINavigationController,
+        willShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        // was the back button tapped?
+        if viewController === self {
+            dataModel.indexOfSelectedChecklist = -1
+        }
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.delegate = self
+        
+        let index = dataModel.indexOfSelectedChecklist
+        if index >= 0 && index < dataModel.lists.count {
+            let checklist = dataModel.lists[index]
+            performSegue(
+                withIdentifier: "ShowChecklist",
+                sender: checklist)
+        }
+    }
 }
